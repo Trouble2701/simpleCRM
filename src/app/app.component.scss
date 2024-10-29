@@ -1,0 +1,65 @@
+.mat-drawer-container{
+    height: 100vh;
+
+    .menu-icon{
+        cursor: pointer;
+        margin-right: 10px;
+        transition: all 125ms ease-in-out;
+        
+        &:hover{
+            filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.212));
+        }
+    }
+    
+    .sidenav{
+        width: 300px;
+    
+        .logo-container{
+            display: flex;
+            align-items: center;
+            min-height: 56px;
+            border-bottom: 1px solid rgb(226, 226, 226);
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .menu-items{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+
+            li{
+                padding-left: 16px;
+                padding-right: 16px;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                cursor: pointer;
+                transition: all 125ms ease-in-out;
+
+                &:hover{
+                    background-color: rgba(0, 0, 0, 0.1);
+                    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.212);
+                }
+            }
+        }
+    }
+    
+    .sidenav-content{
+        max-height: 56px;
+        height: 56px;
+    }
+    
+    .mat-toolbar{
+        min-height: 56px;
+        max-height: 56px;
+        height: 56px;
+    }
+    
+    .mat-toolbar-multiple-rows{
+        min-height: 56px;
+        max-height: 56px;
+        height: 56px;
+    }
+}
