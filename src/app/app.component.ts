@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -16,4 +16,11 @@ import { RouterModule } from "@angular/router";
 })
 export class AppComponent {
   title = 'simpleCRM';
+
+  @ViewChild('router-outlet') site: ElementRef | any;
+  
+  changeSite(){
+      this.site.nativeElement.setAttrbute('style', 'transform: translateX(100vh)');
+      setTimeout(() => this.site.nativeElement.setAttrbute('style', 'transform: translateX(0)'), 1000);
+  }
 }
