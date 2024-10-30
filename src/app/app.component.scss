@@ -7,7 +7,7 @@
         transition: all 125ms ease-in-out;
         
         &:hover{
-            filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.212));
+            filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.527));
         }
     }
     
@@ -39,8 +39,12 @@
                 transition: all 125ms ease-in-out;
 
                 &:hover{
-                    background-color: rgba(0, 0, 0, 0.1);
+                    background-color: rgba(0, 0, 0, 0.04);
                     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.212);
+                }
+
+                &:focus{
+                    outline: none;
                 }
             }
         }
@@ -49,6 +53,11 @@
     .sidenav-content{
         max-height: 56px;
         height: 56px;
+
+        .router-container{
+            padding-left: 56px;
+            padding-top: 16px;
+        }
     }
     
     .mat-toolbar{
