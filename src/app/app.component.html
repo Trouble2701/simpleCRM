@@ -3,19 +3,19 @@
     <div class="logo-container">PLatz für LOGO</div>
 
     <ul class="menu-items">
-      <li routerLink=""><mat-icon>space_dashboard</mat-icon> Dashbord</li>
-      <li routerLink="/user"><mat-icon>person</mat-icon> User</li>
+      <li (click)="changeSite('/')"><mat-icon>space_dashboard</mat-icon> Dashbord</li>
+      <li (click)="changeSite('/user')"><mat-icon>person</mat-icon> User</li>
     </ul>
   </mat-drawer>
 
   <div class="sidenav-content">
     <mat-toolbar color="primary">
       <mat-toolbar-row>
-        <mat-icon class="menu-icon" mat-button (click)="drawer.toggle()">menu.open</mat-icon>
+        <mat-icon class="menu-icon" mat-button (click)="drawer.toggle(); changeWidth()">menu.open</mat-icon>
         <span>Simple CRM</span>
       </mat-toolbar-row>
     </mat-toolbar>
-    <div class="router-container">
+    <div class="router-container" #site>
       <router-outlet></router-outlet>
     </div>
   </div>

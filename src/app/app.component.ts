@@ -1,6 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
@@ -16,11 +16,22 @@ import { RouterModule } from "@angular/router";
 })
 export class AppComponent {
   title = 'simpleCRM';
+  open = true;
 
-  @ViewChild('router-outlet') site: ElementRef | any;
+  @ViewChild('drawer') drawer: any;
+  @ViewChild('site') site: ElementRef | any;
   
-  changeSite(){
-      this.site.nativeElement.setAttrbute('style', 'transform: translateX(100vh)');
-      setTimeout(() => this.site.nativeElement.setAttrbute('style', 'transform: translateX(0)'), 1000);
+  constructor(private router: Router){
+
+  }
+
+  changeWidth(){
+    setTimeout(() => this.site.nativeElement.setAttribute('style', this.drawer.opened == true ? 'max-width:1140px' : 'max-width:1440px'), 250);
+  }
+
+  changeSite(site: any){
+      this.site.nativeElement.setAttribute('style', 'transform: translateX(100vw)');
+      setTimeout(() => this.router.navigate([site]), 250);
+      setTimeout(() => this.site.nativeElement.setAttribute('style', 'transform: translateX(0)'), 400);
   }
 }
