@@ -63,7 +63,6 @@ export class DialogAddUserComponent implements OnInit {
   saveUser() {
     this.loading = true;
     this.user.birthDate = this.birthDate.getTime();
-    console.log(this.user);
     this.addUser(this.user.toJson());
   }
 

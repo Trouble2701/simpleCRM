@@ -6,16 +6,13 @@
         <th>E-Mail</th>
         <th>City</th>
       </tr>
-      <tr>
-        <td>asdas</td>
-        <td>asdas</td>
-        <td>asdasd</td>
-      </tr>
-      <tr>
-        <td>asdas</td>
-        <td>asdas</td>
-        <td>asdasd</td>
-      </tr>
+      @for (userData of users; track userData) {
+        <tr>
+          <td>{{userData.firstName}} {{userData.lastName}}</td>
+          <td>{{userData.email}}</td>
+          <td>{{userData.city}}</td>
+        </tr>
+      }
     </table>
   </mat-card-content>
 </mat-card>
