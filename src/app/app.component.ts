@@ -17,9 +17,11 @@ import { RouterModule } from "@angular/router";
 export class AppComponent {
   title = 'simpleCRM';
   open = true;
+  name: boolean = true;
 
   @ViewChild('drawer') drawer: any;
   @ViewChild('site') site: ElementRef | any;
+  @ViewChild('name') siteName: ElementRef | any;
   
   constructor(private router: Router){
 
@@ -27,6 +29,7 @@ export class AppComponent {
 
   changeWidth(){
     setTimeout(() => this.site.nativeElement.setAttribute('style', this.drawer.opened == true ? 'max-width:1140px' : 'max-width:1440px'), 250);
+    setTimeout(() => this.siteName.nativeElement.setAttribute('style', this.drawer.opened == true ? 'display: none; transition: all 1000ms ease-in-out;' : 'display: flex; transition: all 1000ms ease-in-out;'), 250);
   }
 
   changeSite(site: any){
@@ -34,4 +37,6 @@ export class AppComponent {
       setTimeout(() => this.router.navigate([site]), 250);
       setTimeout(() => this.site.nativeElement.setAttribute('style', 'transform: translateX(0)'), 400);
   }
+
+  
 }

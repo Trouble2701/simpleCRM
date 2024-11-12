@@ -1,6 +1,8 @@
 <mat-drawer-container class="mat-drawer-container" autosize>
   <mat-drawer [opened]="true" #drawer class="sidenav" mode="side">
-    <div class="logo-container">PLatz für LOGO</div>
+    <div class="logo-container">
+      <img class="logo" src="assets/img/logo/scrm.png">
+    </div>
 
     <ul class="menu-items">
       <li (click)="changeSite('/')"><mat-icon>space_dashboard</mat-icon> Dashbord</li>
@@ -12,7 +14,7 @@
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <mat-icon class="menu-icon" mat-button (click)="drawer.toggle(); changeWidth()">menu.open</mat-icon>
-        <span>Simple CRM</span>
+        <span *ngIf="name" class="name" #name>Simple CRM</span>
       </mat-toolbar-row>
     </mat-toolbar>
     <div class="router-container" #site>

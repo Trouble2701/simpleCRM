@@ -7,3 +7,65 @@
 p{
     width: 100%;
 }
+
+mat-card{
+    width: calc(100vw - 412px);
+}
+
+mat-card-content{
+    padding-left: 0;
+    padding-right: 0;
+    &:last-child{
+        padding-bottom: 0;
+    }
+}
+
+.user-table{
+    width: 100%;
+    border-collapse: collapse;
+
+    tr{
+        border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+
+        &:first-child{
+            cursor: unset;
+            &:hover{
+                background-color: unset;
+                box-shadow: unset;
+            }
+        }
+
+        &:last-child{
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        td{
+            height: 40px;
+
+            &:first-child{
+                padding-left: 16px;
+            }
+        }
+
+        th{
+            &:first-child{
+                padding-left: 16px;
+            }
+        }
+
+        cursor: pointer;
+        &:hover{
+            background-color: rgba(67, 1, 182, 0.1);
+            box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.212);
+        }
+    }
+
+    th{
+        color: rgb(0, 0, 0, 0.4);
+        font-size: 14px;
+        font-weight: 400;
+        text-align: start;
+        padding-bottom: 20px;
+    }
+}

@@ -26,6 +26,11 @@
             border-bottom: 1px solid rgb(226, 226, 226);
             padding-left: 16px;
             padding-right: 16px;
+
+            .logo{
+                max-width: 100%;
+                height: 48px;
+            }
         }
 
         .menu-items{
@@ -44,7 +49,7 @@
                 transition: all 125ms ease-in-out;
 
                 &:hover{
-                    background-color: rgba(0, 0, 0, 0.04);
+                    background-color: rgba(67, 1, 182, 0.1);
                     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.212);
                 }
 
@@ -61,12 +66,18 @@
         .router-container{
             display: flex;
             height: calc(100vh - 72px);
-            width: calc(100% - 56px);
+            width: calc(100vw - 412px);
             max-width: 1140px;
             padding-left: 56px;
+            padding-right: 56px;
             padding-top: 16px;
             transition: all 300ms ease-in-out;
             position: relative;
+        }
+
+        .name{
+            display: none;
+            transition: all 1000ms ease-in-out;
         }
     }
     
