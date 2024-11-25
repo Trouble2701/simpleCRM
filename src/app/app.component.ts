@@ -37,6 +37,4 @@ export class AppComponent {
       setTimeout(() => this.router.navigate([site]), 250);
       setTimeout(() => this.site.nativeElement.setAttribute('style', 'transform: translateX(0)'), 400);
   }
-
-  
 }

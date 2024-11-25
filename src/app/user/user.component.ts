@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Injectable } from '@angular/core';
+import { Component, inject, OnInit, Injectable, ViewChild, ElementRef } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -7,6 +7,7 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 import { User } from '../../moduls/user.class';
 import {MatCardModule} from '@angular/material/card';
 import { collection, Firestore, doc, onSnapshot, addDoc, updateDoc, deleteDoc, query, where, limit, orderBy } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -24,9 +25,12 @@ export class UserComponent implements OnInit {
   user = new User();
   firestore = inject(Firestore);
   users: any[] = [];
+  userId: string[] = [];
   unsubUser;
 
-  constructor(public dialog: MatDialog){
+  @ViewChild('userList') userList: any | ElementRef;
+
+  constructor(public dialog: MatDialog, private router: Router){
     this.unsubUser = this.subUser();
   }
 
@@ -38,15 +42,24 @@ export class UserComponent implements OnInit {
     const q = query(this.getUsersRef(), orderBy("firstName"), orderBy("lastName"));
     return onSnapshot(q, (list) => {
       this.users = [];
+      this.userId = [];
       list.forEach(element => {
         this.users.push(element.data());
-        console.log(this.users);
+        this.userId.push(element.id);
       })
+//      console.log(this.userId);
+//      console.log(this.users);
     });
   }
 
   ngOnInit(){
 
+  }
+
+  openUser(index:number){
+    console.log(this.userId[index]);
+    this.userList.nativeElement.setAttribute('style', 'transform: translateX(100vw)');
+    setTimeout(() => this.router.navigate(['/user/' + this.userId[index]]), 250);
   }
 
   openDialog(){

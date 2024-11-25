@@ -8,6 +8,10 @@ p{
     width: 100%;
 }
 
+.list{
+    transition: all 250ms ease-in-out;
+}
+
 mat-card{
     width: calc(100vw - 412px);
     max-width: 1440px;

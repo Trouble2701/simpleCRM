@@ -1,21 +1,23 @@
-<mat-card appearance="outlined">
-  <mat-card-content>
-    <table class="user-table">
-      <tr>
-        <th>Name</th>
-        <th>E-Mail</th>
-        <th>City</th>
-      </tr>
-      @for (userData of users; track userData) {
+<div class="list" #userList>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <table class="user-table">
         <tr>
+          <th>Name</th>
+          <th>E-Mail</th>
+          <th>City</th>
+        </tr>
+        @for (userData of users; track userData; let i = $index) {
+        <tr (click)="openUser(i)">
           <td>{{userData.firstName}} {{userData.lastName}}</td>
           <td>{{userData.email}}</td>
           <td>{{userData.city}}</td>
         </tr>
-      }
-    </table>
-  </mat-card-content>
-</mat-card>
-<button (click)="openDialog()" class="add-user-btn" [matTooltipPosition]="'above'" matTooltip="Add new User" mat-fab color="primary">
+        }
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <button (click)="openDialog()" class="add-user-btn" [matTooltipPosition]="'above'" matTooltip="Add new User" mat-fab color="primary">
     <mat-icon>add</mat-icon>
   </button>
+</div>
