@@ -23,6 +23,7 @@ export class UserDetailComponent {
   }
 
   backToList(){
-    //this.changeSite(this.router.navigate(['/user']));
+    this.userInfo.nativeElement.setAttribute('style', 'transform: translateX(100vw)')
+    setTimeout(() => this.router.navigate(['/user']), 250);
   }
 }
