@@ -2,12 +2,56 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    flex-direction: column;
     transform: translateX(100vw);
     transition: all 250ms ease-in-out;
+    gap: 10px;
 }
 
 .add-user-btn{
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 1;
+    transform: scale(60%);
+    background-color: transparent;
+    box-shadow: unset;
+    &:hover{
+        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.521);
+    }
+}
+
+.cardHeader{
+    min-height: 250px;
+    width: calc(100vw - 412px);
+    border-radius: 10px;
+    padding: 15px;
+    background-color: orangered;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    color: white;
+
+    .avatarIMG{
+        height: 80px;
+        width: 60px;
+    }
+
+    .userData{
+        margin-left: 32px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+
+        h2{
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.userDetails{
+    width: calc(100vw - 412px);
+    border-radius: 10px;
 }
