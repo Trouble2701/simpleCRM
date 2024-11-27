@@ -1,12 +1,12 @@
 import { Component, inject, OnInit, Injectable, ViewChild, ElementRef } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatDialog} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from '../../moduls/user.class';
-import {MatCardModule} from '@angular/material/card';
-import { collection, Firestore, doc, onSnapshot, addDoc, updateDoc, deleteDoc, query, where, limit, orderBy } from '@angular/fire/firestore';
+import { MatCardModule } from '@angular/material/card';
+import { collection, Firestore, onSnapshot, query, orderBy } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
 @Component({
