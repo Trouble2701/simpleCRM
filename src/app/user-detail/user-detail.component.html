@@ -3,15 +3,22 @@
     color="primary">
     <mat-icon>close</mat-icon>
   </button>
+  <button mat-icon-button class="pin-right colorChange userEditIcon" (click)="userDetailEdit()">
+    <mat-icon>mode_edit</mat-icon>
+  </button>
   <mat-card class="cardHeader" appearance="outlined">
     <img src="assets/img/avatar/avatar_men.png" class="avatarIMG">
     <div class="userData">
       <h2>{{users.firstName}} {{users.lastName}}</h2>
       <p>{{users.email}}</p>
+      <p>C.-Nr.: {{users.kdnr}}</p>
     </div>
   </mat-card>
 
   <mat-card class="userDetails mt-16">
+    <button mat-icon-button class="pin-right userEditIcon" (click)="userAdressEdit()">
+      <mat-icon>mode_edit</mat-icon>
+    </button>
     <mat-card-header>
       <mat-card-title>Adress</mat-card-title>
     </mat-card-header>

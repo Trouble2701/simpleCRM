@@ -4,24 +4,36 @@
 <h2 mat-dialog-title>Add User</h2>
 <mat-dialog-content>
     <div>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Company</mat-label>
+            <input [disabled]="loading" type="text" [(ngModel)]="user.company" matInput placeholder="Enter Company">
+        </mat-form-field>
+    </div>
+    <div>
         <mat-form-field class="mr-16" appearance="outline">
-            <mat-label>First Name</mat-label>
+            <mat-label #first><p class="fieldinfo">*</p>First Name</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="Enter First Name">
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>Last Name</mat-label>
+            <mat-label #last><p class="fieldinfo">*</p>Last Name</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Enter Last Name">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>E-Mail</mat-label>
+            <mat-label #email><p class="fieldinfo">*</p>E-Mail</mat-label>
             <input [disabled]="loading" type="email" [(ngModel)]="user.email" matInput placeholder="Enter E-Mail">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Birthday</mat-label>
+            <mat-label>Telephone</mat-label>
+            <input [disabled]="loading" type="number" [(ngModel)]="user.telephone" matInput placeholder="Enter Telephone">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label #birthday><p class="fieldinfo">*</p>Birthday</mat-label>
             <input [disabled]="loading" [(ngModel)]="birthDate" matInput [matDatepicker]="datepicker" placeholder="MM/DD/YYYY">
             <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
             <mat-datepicker #datepicker>
@@ -34,23 +46,25 @@
     </div>
     <div>
         <mat-form-field class="mr-16" appearance="outline" class="full-width">
-            <mat-label>Stree + House No.</mat-label>
+            <mat-label #street><p class="fieldinfo">*</p>Stree + House No.</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="Enter Stree + House No.">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="mr-16" appearance="outline">
-            <mat-label>ZIP Code</mat-label>
+            <mat-label #zipcode><p class="fieldinfo">*</p>ZIP Code</mat-label>
             <input [disabled]="loading" #postalCode maxlength="5" [(ngModel)]="user.zipCode" matInput placeholder="Enter ZIP Code">
             
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>City</mat-label>
+            <mat-label #city><p class="fieldinfo">*</p>City</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="Enter City">
         </mat-form-field>
     </div>
+    <p class="fieldinfo">* Fields required</p>
+    <p class="failed fieldinfo" #failed>Please fill required Fields</p>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button (click)="closeDialog()" [disabled]="loading">No Thanks</button>
-    <button mat-button (click)="saveUser()" cdkFocusInitial [disabled]="loading">Ok</button>
+    <button mat-button (click)="checkData()" cdkFocusInitial [disabled]="loading">Ok</button>
 </mat-dialog-actions>

@@ -6,11 +6,15 @@ import { MatCardModule } from '@angular/material/card';
 import { Router, ActivatedRoute } from '@angular/router';
 import { collection, Firestore, doc, onSnapshot, addDoc, updateDoc, deleteDoc, query, where, limit, orderBy } from '@angular/fire/firestore';
 import { User } from '../../moduls/user.class';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditAdressComponent } from '../dialog-edit-adress/dialog-edit-adress.component';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatCardModule],
+  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatCardModule, MatMenuModule],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
@@ -30,7 +34,7 @@ export class UserDetailComponent {
 
   @ViewChild('userInfo') userInfo: any | ElementRef;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     this.unsubUserId = this.subUserId();
     this.unsubUserDetails = this.subUserDetails();
     this.slideIn();
@@ -50,6 +54,14 @@ export class UserDetailComponent {
       this.users = new User(list.data());
       //console.log('user List:', this.users);
     });
+  }
+
+  userDetailEdit(){
+    this.dialog.open(DialogEditUserComponent);
+  }
+  
+  userAdressEdit(){
+    this.dialog.open(DialogEditAdressComponent);
   }
 
   slideIn() {

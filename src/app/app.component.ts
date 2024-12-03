@@ -1,11 +1,10 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterModule } from "@angular/router";
-
 
 @Component({
   selector: 'app-root',
@@ -23,9 +22,7 @@ export class AppComponent {
   @ViewChild('site') site: ElementRef | any;
   @ViewChild('name') siteName: ElementRef | any;
   
-  constructor(private router: Router){
-
-  }
+  constructor(private router: Router){}
 
   changeWidth(){
     setTimeout(() => this.site.nativeElement.setAttribute('style', this.drawer.opened == true ? 'max-width:1140px' : 'max-width:1440px'), 250);

@@ -57,7 +57,6 @@ export class UserComponent implements OnInit {
   }
 
   openUser(index:number){
-    console.log(this.userId[index]);
     //this.userList.nativeElement.setAttribute('style', 'transform: translateX(100vw)');
     this.router.navigate(['/user/' + this.userId[index]]);
   }
