@@ -1,1 +1,32 @@
-<p>dialog-edit-adress works!</p>
+<h2 mat-dialog-title>Add User</h2>
+<mat-dialog-content>
+    <div>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Company</mat-label>
+            <input type="text" [(ngModel)]="user.company" matInput placeholder="Enter Company">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="mr-16" appearance="outline" class="full-width">
+            <mat-label #street><p class="fieldinfo">*</p>Stree + House No.</mat-label>
+            <input [(ngModel)]="user.street" matInput placeholder="Enter Stree + House No.">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="mr-16" appearance="outline">
+            <mat-label #zipcode><p class="fieldinfo">*</p>ZIP Code</mat-label>
+            <input #postalCode maxlength="5" [(ngModel)]="user.zipCode" matInput placeholder="Enter ZIP Code">
+            
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label #city><p class="fieldinfo">*</p>City</mat-label>
+            <input [(ngModel)]="user.city" matInput placeholder="Enter City">
+        </mat-form-field>
+    </div>
+    <p class="fieldinfo">* Fields required</p>
+    <p class="failed fieldinfo" #failed>{{ failedAnswer }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">No Thanks</button>
+    <button mat-button (click)="checkData()" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

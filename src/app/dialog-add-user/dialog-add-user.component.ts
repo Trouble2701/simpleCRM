@@ -41,10 +41,12 @@ export class DialogAddUserComponent implements OnInit {
 
   user = new User();
   birthDate: any;
+  company: string = '';
 
   loading: boolean = false;
   usersKndr: any[] = [];
   allkdnr:number[] = [];
+  failedAnswer:string = 'Please fill out all fields';
 
   @ViewChild('failed') failed: any | ElementRef;
   @ViewChild('first') first: any | ElementRef;
@@ -68,23 +70,68 @@ export class DialogAddUserComponent implements OnInit {
 
   checkData(){
     if(this.checkInput()){
-      if(this.checkZipCode(this.user.zipCode)){
-        this.failedShow('none');
-        this.saveUser();
-      }else{
-        console.log(this.checkZipCode(this.user.zipCode))
-        this.failedShow('flex');
-      }
+      this.zipCode();
     }else{
-      this.failedShow('flex');
+      this.failedShow('flex', 'Please fill out all fields');
     }
   }
 
-  failedShow(see:string){
+  checkInput(){
+    return this.user.firstName && this.user.lastName && this.user.email && this.birthDate && this.user.street && this.user.zipCode && this.user.city ? true : false;
+  }
+
+  zipCode(){
+    if(this.checkZipCode(this.user.zipCode)){
+      this.emailCode();
+    }else{
+      this.failedShow('flex', 'The zip code can only consist of numbers');
+    }
+  }
+
+  checkZipCode(code:any){
+    return /^-?\d+$/.test(code);
+  }
+
+  emailCode(){
+    if(this.checkEmailCode()){
+      this.existsUser();
+    }else{
+      this.failedShow('flex', 'Please provide a correct e-mail');
+    }
+  }
+
+  checkEmailCode(){
+    let validRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return this.user.email.match(validRegex) ? true : false;
+  }
+
+  existsUser(){
+    if(!this.checkExistUser()){
+      this.failedShow('none', '');
+      this.saveUser();
+    }else{
+      this.failedShow('flex', 'User Exists');
+    }
+  }
+
+  checkExistUser():any{
+    for(let i = 0; i < this.usersKndr.length; i++){
+      if(this.usersKndr[i].firstName.toLowerCase() == this.user.firstName.toLowerCase() && this.usersKndr[i].lastName.toLowerCase() == this.user.lastName.toLowerCase() && this.usersKndr[i].email.toLowerCase() == this.user.email.toLowerCase()){
+        return true;
+      }else if(this.usersKndr[i].email.toLowerCase() == this.user.email.toLowerCase()){
+        return true;
+      }else if(i == this.usersKndr.length-1){
+        return false;
+      }
+    }
+  }
+
+  failedShow(see:string, answer:string){
+    this.failedAnswer = answer;
     this.failed.nativeElement.setAttribute('style', 'display:'+see+';');
     this.first.nativeElement.setAttribute('style', this.user.firstName ? 'color: unset' : 'color: red !important;');
     this.last.nativeElement.setAttribute('style', this.user.lastName ? 'color: unset' : 'color: red !important;');
-    this.email.nativeElement.setAttribute('style', this.user.email ? 'color: unset' : 'color: red !important;');
+    this.email.nativeElement.setAttribute('style', this.user.email && this.checkEmailCode() ? 'color: unset' : 'color: red !important;');
     this.birthday.nativeElement.setAttribute('style', this.birthDate ? 'color: unset' : 'color: red !important;');
     this.street.nativeElement.setAttribute('style', this.user.street ? 'color: unset' : 'color: red !important;');
     this.zip.nativeElement.setAttribute('style', this.user.zipCode && this.checkZipCode(this.user.zipCode) ? 'color: unset' : 'color: red !important;');
@@ -94,16 +141,9 @@ export class DialogAddUserComponent implements OnInit {
   async saveUser() {
     this.allkdnrRead();
       this.loading = true;
-      await this.addKdnr();
       this.user.birthDate = this.birthDate.getTime();
-  }
-
-  checkInput(){
-    return this.user.firstName && this.user.lastName && this.user.email && this.birthDate && this.user.street && this.user.zipCode && this.user.city ? true : false;
-  }
-
-  checkZipCode(code:any){
-    return /^-?\d+$/.test(code);
+      this.user.company = !this.company ? 'Private' : this.company;
+      await this.addKdnr();
   }
 
   async addKdnr() {

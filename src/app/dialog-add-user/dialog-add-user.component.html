@@ -6,7 +6,7 @@
     <div>
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Company</mat-label>
-            <input [disabled]="loading" type="text" [(ngModel)]="user.company" matInput placeholder="Enter Company">
+            <input [disabled]="loading" type="text" [(ngModel)]="company" matInput placeholder="Enter Company">
         </mat-form-field>
     </div>
     <div>
@@ -62,7 +62,7 @@
         </mat-form-field>
     </div>
     <p class="fieldinfo">* Fields required</p>
-    <p class="failed fieldinfo" #failed>Please fill required Fields</p>
+    <p class="failed fieldinfo" #failed>{{ failedAnswer }}</p>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button (click)="closeDialog()" [disabled]="loading">No Thanks</button>

@@ -28,16 +28,25 @@ export class UserDetailComponent {
   firestore = inject(Firestore);
   userId = '';
   users: User = new User;
+  company:any;
+  companyAdress:any;
 
   unsubUserId;
   unsubUserDetails;
 
   @ViewChild('userInfo') userInfo: any | ElementRef;
+  @ViewChild('companyCheck') companySet: any | ElementRef;
 
   constructor(public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     this.unsubUserId = this.subUserId();
     this.unsubUserDetails = this.subUserDetails();
     this.slideIn();
+  }
+
+  companyCheck(){
+    this.companyAdress = this.users.company == 'Private' ? '' : this.users.company; 
+    this.company = this.users.company == 'Private' ? this.users.company : 'Company ';
+    this.companySet.nativeElement.setAttribute('style', this.users.company == 'Private' ? 'display:none' : 'display:flex');
   }
 
   ngonDestroy() {
@@ -52,7 +61,7 @@ export class UserDetailComponent {
   subUserDetails() {
     return onSnapshot(this.getUsersRef(), (list) => {
       this.users = new User(list.data());
-      //console.log('user List:', this.users);
+      this.companyCheck();
     });
   }
 

@@ -20,11 +20,22 @@
       <mat-icon>mode_edit</mat-icon>
     </button>
     <mat-card-header>
-      <mat-card-title>Adress</mat-card-title>
+      <mat-card-title>{{ company }} Adress</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      {{users.street}}<br>
-      {{users.zipCode}} {{users.city}}
+      <table>
+        <tr #companyCheck>
+          <td>
+            {{companyAdress}}
+          </td>
+        </tr>
+        <tr>
+          <td>{{users.street}}</td>
+        </tr>
+        <tr>
+          <td>{{users.zipCode}} {{users.city}}</td>
+        </tr>
+      </table>
     </mat-card-content>
   </mat-card>
 </div>
