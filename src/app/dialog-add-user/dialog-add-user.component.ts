@@ -52,6 +52,7 @@ export class DialogAddUserComponent implements OnInit {
   @ViewChild('first') first: any | ElementRef;
   @ViewChild('last') last: any | ElementRef;
   @ViewChild('email') email: any | ElementRef;
+  @ViewChild('telNumber') telNumber: any | ElementRef;
   @ViewChild('birthday') birthday: any | ElementRef;
   @ViewChild('street') street: any | ElementRef;
   @ViewChild('zipcode') zip: any | ElementRef;
@@ -107,8 +108,7 @@ export class DialogAddUserComponent implements OnInit {
 
   existsUser(){
     if(!this.checkExistUser()){
-      this.failedShow('none', '');
-      this.saveUser();
+      this.checkTelephone();
     }else{
       this.failedShow('flex', 'User Exists');
     }
@@ -126,12 +126,31 @@ export class DialogAddUserComponent implements OnInit {
     }
   }
 
+  checkTelephone(){
+    if(this.user.telephone){
+      if(this.checkNumber(this.user.telephone)){
+        this.failedShow('none', '');
+        this.saveUser();
+      }else{
+        this.failedShow('flex', 'The Tel. Number can only consist of numbers');
+      }
+    }else{
+      this.failedShow('none', '');
+      this.saveUser();
+    }
+  }
+
+  checkNumber(code:any){
+    return /^-?\d+$/.test(code);
+  }
+
   failedShow(see:string, answer:string){
     this.failedAnswer = answer;
     this.failed.nativeElement.setAttribute('style', 'display:'+see+';');
     this.first.nativeElement.setAttribute('style', this.user.firstName ? 'color: unset' : 'color: red !important;');
     this.last.nativeElement.setAttribute('style', this.user.lastName ? 'color: unset' : 'color: red !important;');
     this.email.nativeElement.setAttribute('style', this.user.email && this.checkEmailCode() ? 'color: unset' : 'color: red !important;');
+    if(this.user.telephone) this.telNumber.nativeElement.setAttribute('style', this.checkNumber(this.user.telephone) ? 'color: unset' : 'color: red !important;');
     this.birthday.nativeElement.setAttribute('style', this.birthDate ? 'color: unset' : 'color: red !important;');
     this.street.nativeElement.setAttribute('style', this.user.street ? 'color: unset' : 'color: red !important;');
     this.zip.nativeElement.setAttribute('style', this.user.zipCode && this.checkZipCode(this.user.zipCode) ? 'color: unset' : 'color: red !important;');

@@ -27,8 +27,8 @@
     </div>
     <div>
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Telephone</mat-label>
-            <input [disabled]="loading" type="number" [(ngModel)]="user.telephone" matInput placeholder="Enter Telephone">
+            <mat-label #telNumber>Telephone</mat-label>
+            <input [disabled]="loading" [(ngModel)]="user.telephone" matInput placeholder="Enter Telephone">
         </mat-form-field>
     </div>
     <div>
