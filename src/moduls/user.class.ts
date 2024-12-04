@@ -29,6 +29,7 @@ export class User {
             company: this.company,
             firstName: this.firstName,
             lastName: this.lastName,
+            telephone: this.telephone,
             email: this.email,
             birthDate: this.birthDate,
             street: this.street,
