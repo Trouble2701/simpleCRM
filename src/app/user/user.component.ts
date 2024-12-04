@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
   }
 
   subUser() {
-    const q = query(this.getUsersRef(), orderBy("firstName"), orderBy("lastName"));
+    const q = query(this.getUsersRef(), orderBy("firstName", "asc"), orderBy("lastName", "asc"));
     return onSnapshot(q, (list) => {
       this.users = [];
       this.userId = [];
