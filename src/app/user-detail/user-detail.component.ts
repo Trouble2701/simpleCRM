@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Router, ActivatedRoute } from '@angular/router';
 import { collection, Firestore, doc, onSnapshot, addDoc, updateDoc, deleteDoc, query, where, limit, orderBy } from '@angular/fire/firestore';
 import { User } from '../../moduls/user.class';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditAdressComponent } from '../dialog-edit-adress/dialog-edit-adress.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
@@ -28,8 +28,9 @@ export class UserDetailComponent {
   firestore = inject(Firestore);
   userId = '';
   users: User = new User;
-  company:any;
-  companyAdress:any;
+  company: any;
+  companyAdress: any;
+  bDay: string = '';
 
   unsubUserId;
   unsubUserDetails;
@@ -43,8 +44,8 @@ export class UserDetailComponent {
     this.slideIn();
   }
 
-  companyCheck(){
-    this.companyAdress = this.users.company == 'Private' ? '' : this.users.company; 
+  companyCheck() {
+    this.companyAdress = this.users.company == 'Private' ? '' : this.users.company;
     this.company = this.users.company == 'Private' ? this.users.company : 'Company ';
     this.companySet.nativeElement.setAttribute('style', this.users.company == 'Private' ? 'display:none' : 'display:flex');
   }
@@ -62,15 +63,28 @@ export class UserDetailComponent {
     return onSnapshot(this.getUsersRef(), (list) => {
       this.users = new User(list.data());
       this.companyCheck();
+      this.birthDate();
     });
   }
 
-  userDetailEdit(){
+  userDetailEdit() {
     this.dialog.open(DialogEditUserComponent);
   }
-  
-  userAdressEdit(){
+
+  userAdressEdit() {
     this.dialog.open(DialogEditAdressComponent);
+  }
+
+  birthDate() {
+    let today = new Date(this.users.birthDate);
+    let yyyy = today.getFullYear();
+    let mm:any = today.getMonth() + 1;
+    let dd:any = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    this.bDay = dd + '.' + mm + '.' + yyyy;
   }
 
   slideIn() {
