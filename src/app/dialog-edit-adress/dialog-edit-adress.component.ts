@@ -65,7 +65,7 @@ export class DialogEditAdressComponent {
   checkZip(){
     if(this.checkZipCode(this.user.zipCode)){
       this.failedShow('none', '');
-      this.updateNote();
+      this.updateAdress();
       this.closeDialog();
     }else{
       this.failedShow('flex', 'The zip code can only consist of numbers');
@@ -84,7 +84,7 @@ export class DialogEditAdressComponent {
     this.city.nativeElement.setAttribute('style', this.user.city ? 'color: unset' : 'color: red !important;');
   }
 
-  async updateNote(){
+  async updateAdress(){
     if(this.findUserId){
       await updateDoc(this.getUsersRef(), this.user.toJson()).catch(
         (err) => {console.error(err)}
