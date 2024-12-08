@@ -17,6 +17,7 @@
         </tr>
         }
       </table>
+      <div [ngClass]="isCustomer ? 'show' : 'noShow'">No Customer</div>
     </mat-card-content>
   </mat-card>
   <button (click)="openDialog()" class="add-user-btn" [matTooltipPosition]="'above'" matTooltip="Add new User" mat-fab color="primary">

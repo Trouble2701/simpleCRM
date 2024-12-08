@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, Injectable, ViewChild, ElementRef } from '@angular/core';
+import {CommonModule} from "@angular/common"
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatCardModule],
+  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatCardModule, CommonModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
@@ -26,6 +27,7 @@ export class UserComponent implements OnInit {
   firestore = inject(Firestore);
   users: any[] = [];
   userId: string[] = [];
+  isCustomer:boolean = true;
   unsubUser;
 
   @ViewChild('userList') userList: any | ElementRef;
@@ -49,6 +51,7 @@ export class UserComponent implements OnInit {
       })
 //      console.log(this.userId);
 //      console.log(this.users);
+      this.isCustomer = this.userId.length > 0 ? false : true;
     });
   }
 
