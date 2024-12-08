@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditAdressComponent } from '../dialog-edit-adress/dialog-edit-adress.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { DialogEditContactComponent } from '../dialog-edit-contact/dialog-edit-contact.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -73,6 +74,10 @@ export class UserDetailComponent {
 
   userAdressEdit() {
     this.dialog.open(DialogEditAdressComponent);
+  }
+
+  userContactEdit(){
+    this.dialog.open(DialogEditContactComponent);
   }
 
   birthDate() {

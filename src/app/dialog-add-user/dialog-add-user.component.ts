@@ -161,6 +161,7 @@ export class DialogAddUserComponent implements OnInit {
     this.allkdnrRead();
       this.loading = true;
       this.user.birthDate = this.birthDate.getTime();
+      this.user.addDate = new Date().getTime();
       this.user.company = !this.company ? 'Private' : this.company;
       await this.addKdnr();
   }

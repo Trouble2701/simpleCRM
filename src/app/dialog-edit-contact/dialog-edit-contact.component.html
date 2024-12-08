@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Edit Contact</h2>
+<mat-dialog-content>
+    <div>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label #email><p class="fieldinfo">*</p>E-Mail</mat-label>
+            <input type="email" [(ngModel)]="user.email" matInput placeholder="Enter E-Mail">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label #telNumber>Telephone</mat-label>
+            <input [(ngModel)]="user.telephone" matInput placeholder="Enter Telephone">
+        </mat-form-field>
+    </div>
+    <p class="fieldinfo">* Fields required</p>
+    <p class="failed fieldinfo" #failed>{{ failedAnswer }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">No Thanks</button>
+    <button mat-button (click)="checkData()" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

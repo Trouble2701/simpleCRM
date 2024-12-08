@@ -1,0 +1,38 @@
+mat-dialog-content {
+    padding-top: 10px !important;
+    min-width: 400px;
+}
+
+.progress-bar {
+    position: relative;
+
+    mat-progress-bar {
+        position: absolute;
+        top: 0;
+    }
+}
+
+input[type=number] {
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+.fieldinfo{
+    color: red;
+    margin: 0;
+    font-size: 12px;
+}
+
+mat-label{
+    display: flex;
+    gap: 5px;
+}
+
+.failed{
+    display: none;
+}

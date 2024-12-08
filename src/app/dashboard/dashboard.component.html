@@ -1,1 +1,6 @@
-<p>dashboard works!</p>
+<mat-card appearance="outlined">
+    <mat-card-header>Customer</mat-card-header>
+    <mat-card-content><mat-icon>person</mat-icon> {{ userId.length}} Customer</mat-card-content>
+    <mat-card-content><mat-icon>person</mat-icon> {{ users.firstName}} {{ users.lastName }}</mat-card-content>
+    <mat-card-footer (click)="changeSite('/user')">Show all Customer</mat-card-footer>
+  </mat-card>
