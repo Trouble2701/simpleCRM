@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogEditAdressComponent } from '../dialog-edit-adress/dialog-edit-adress.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { DialogEditContactComponent } from '../dialog-edit-contact/dialog-edit-contact.component';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -27,6 +28,7 @@ import { DialogEditContactComponent } from '../dialog-edit-contact/dialog-edit-c
 export class UserDetailComponent {
 
   firestore = inject(Firestore);
+  siteSlide = inject(AppComponent);
   userId = '';
   users: User = new User;
   company: any;
@@ -97,8 +99,7 @@ export class UserDetailComponent {
   }
 
   backToList() {
-    this.userInfo.nativeElement.setAttribute('style', 'transform: translateX(100vw)')
-    setTimeout(() => this.router.navigate(['/user']), 250);
+    this.siteSlide.changeSite('/user');
   }
 
   getUsersRef() {

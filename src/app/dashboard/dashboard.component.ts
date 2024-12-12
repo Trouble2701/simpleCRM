@@ -1,10 +1,11 @@
 import { Component, inject, Injectable, ElementRef, ViewChild } from '@angular/core';
-import {CommonModule} from "@angular/common"
-import {MatCardModule} from '@angular/material/card';
+import { CommonModule } from "@angular/common"
+import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import { collection, doc, Firestore, onSnapshot, query, orderBy } from '@angular/fire/firestore';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { User } from '../../moduls/user.class';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,12 +24,13 @@ export class DashboardComponent {
   firestore = inject(Firestore);
   userId: string[] = [];
   users: User = new User;
-  lastCustomer:string = 'No Customer';
-  isLastCustomer:boolean = false;
+  lastCustomer: string = 'No Customer';
+  isLastCustomer: boolean = false;
+  siteSlide = inject(AppComponent);
   @ViewChild('site') site: ElementRef | any;
   unsubUser;
 
-  constructor(private router: Router){
+  constructor(private router: Router) {
     this.unsubUser = this.subUser();
   }
 
@@ -47,30 +49,27 @@ export class DashboardComponent {
     });
   }
 
-  searchLastId(){
+  searchLastId() {
     return onSnapshot(this.getLastUserRef(this.userId[0]), (list) => {
       this.users = new User(list.data());
       this.lastCustomer = this.users.firstName + ' ' + this.users.lastName;
       this.isLastCustomer = this.lastCustomer != '' ? true : false;
-      console.log(this.isLastCustomer);
     });
   }
-  
-  changeSite(site: any){
-    //this.site.nativeElement.setAttribute('style', 'transform: translateX(100vw)');
-    setTimeout(() => this.router.navigate([site]), 250);
-    //setTimeout(() => this.site.nativeElement.setAttribute('style', 'transform: translateX(0)'), 400);
-}
 
-goToCustomer(){
-  this.isLastCustomer ? this.router.navigate(['/user/' + this.userId[0]]) : '';
-}
+  allCustomer(site: any) {
+    this.siteSlide.changeSite(site)
+  }
 
-getUsersRef() {
-  return collection(this.firestore, 'users');
-}
+  goToCustomer() {
+    this.siteSlide.changeSite('/user/' + this.userId[0]);
+  }
 
-getLastUserRef(userId:string) {
-  return doc(collection(this.firestore, 'users'), userId);
-}
+  getUsersRef() {
+    return collection(this.firestore, 'users');
+  }
+
+  getLastUserRef(userId: string) {
+    return doc(collection(this.firestore, 'users'), userId);
+  }
 }

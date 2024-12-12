@@ -29,9 +29,11 @@ export class AppComponent {
     setTimeout(() => this.siteName.nativeElement.setAttribute('style', this.drawer.opened == true ? 'display: none; transition: all 1000ms ease-in-out;' : 'display: flex; transition: all 1000ms ease-in-out;'), 250);
   }
 
-  changeSite(site: any){
+  changeSite(siteUrl: any){
       this.site.nativeElement.setAttribute('style', 'transform: translateX(100vw)');
-      setTimeout(() => this.router.navigate([site]), 250);
+      setTimeout(() => {
+        this.router.navigate([siteUrl]); 
+      }, 250);
       setTimeout(() => this.site.nativeElement.setAttribute('style', 'transform: translateX(0)'), 400);
   }
 }

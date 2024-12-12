@@ -9,6 +9,7 @@ import { User } from '../../moduls/user.class';
 import { MatCardModule } from '@angular/material/card';
 import { collection, Firestore, onSnapshot, query, orderBy } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-user',
@@ -25,6 +26,7 @@ export class UserComponent implements OnInit {
 
   user = new User();
   firestore = inject(Firestore);
+  siteSlide = inject(AppComponent);
   users: any[] = [];
   userId: string[] = [];
   isCustomer:boolean = true;
@@ -49,8 +51,6 @@ export class UserComponent implements OnInit {
         this.users.push(element.data());
         this.userId.push(element.id);
       })
-//      console.log(this.userId);
-//      console.log(this.users);
       this.isCustomer = this.userId.length > 0 ? false : true;
     });
   }
@@ -60,8 +60,7 @@ export class UserComponent implements OnInit {
   }
 
   openUser(index:number){
-    //this.userList.nativeElement.setAttribute('style', 'transform: translateX(100vw)');
-    this.router.navigate(['/user/' + this.userId[index]]);
+    this.siteSlide.changeSite('/user/' + this.userId[index])
   }
 
   openDialog(){
