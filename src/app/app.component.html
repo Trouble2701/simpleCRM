@@ -1,12 +1,12 @@
 <mat-drawer-container class="mat-drawer-container" autosize>
-  <mat-drawer [opened]="true" #drawer class="sidenav" mode="side">
+  <mat-drawer [opened]="open" #drawer class="sidenav" mode="side">
     <div class="logo-container">
       <img class="logo" src="assets/img/logo/scrm.png">
     </div>
 
     <ul class="menu-items">
-      <li (click)="changeSite('/')"><mat-icon>space_dashboard</mat-icon> Dashbord</li>
-      <li (click)="changeSite('/user')"><mat-icon>person</mat-icon> Customer</li>
+      <li (click)="changeSite('/')" (click)="setOpenTrue()"><mat-icon>space_dashboard</mat-icon> Dashbord</li>
+      <li (click)="changeSite('/user')" (click)="setOpenTrue()"><mat-icon>person</mat-icon> Customer</li>
     </ul>
   </mat-drawer>
 
