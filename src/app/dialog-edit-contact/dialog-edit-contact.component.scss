@@ -36,3 +36,9 @@ mat-label{
 .failed{
     display: none;
 }
+
+@media (max-width: 420px){
+    mat-dialog-content {
+        min-width: unset;
+    }
+}

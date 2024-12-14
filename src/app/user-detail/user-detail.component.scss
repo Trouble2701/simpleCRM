@@ -106,3 +106,13 @@ table{
         width: calc(100vw - 112px);
     }
 }
+
+@media (max-width: 420px){
+    mat-card{
+        width: calc(100vw - 40px) !important;
+    }
+
+    .cardHeader{
+        align-items: center;
+    }
+}

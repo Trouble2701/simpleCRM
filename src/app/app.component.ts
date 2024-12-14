@@ -23,9 +23,11 @@ export class AppComponent {
   @ViewChild('drawer') drawer: any;
   @ViewChild('site') site: ElementRef | any;
   @ViewChild('name') siteName: ElementRef | any;
+  @ViewChild('button') button: ElementRef | any;
 
   constructor(private router: Router) {
     this.siteWidth = window.innerWidth;
+    this.changeSiteWidth();
   }
 
   changeWidth() {
@@ -34,7 +36,7 @@ export class AppComponent {
   }
 
   setOpenTrue(){
-    if(window.innerWidth < this.maxWidth) this.open = true;
+    window.innerWidth > this.maxWidth ? this.open = true : this.drawer.toggle();
   }
 
   changeSite(siteUrl: any) {
@@ -52,5 +54,9 @@ export class AppComponent {
   changeSiteWidth(){
     this.open = this.siteWidth < this.maxWidth ? false : true;
     this.changeWidth();
+  }
+
+  openNav(){
+    this.button.nativeElement.setAttribute('style', this.siteWidth < 420 && this.open == true ? 'display: none;' : 'display: flex;');
   }
 }

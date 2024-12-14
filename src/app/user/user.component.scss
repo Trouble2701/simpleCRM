@@ -90,3 +90,47 @@ mat-card-content{
         width: calc(100vw - 112px);
     }
 }
+
+@media (max-width: 700px){
+    .cityH{
+        display: none;
+    }
+
+    .cityL{
+        display: none;
+    }
+}
+
+@media (max-width: 580px){
+    .mailH{
+        display: none;
+    }
+
+    .mailL{
+        display: none;
+    }
+}
+
+@media (max-width: 420px){
+    mat-card{
+        width: calc(100vw - 40px) !important;
+    }
+}
+
+@media (max-width: 400px){
+    .compH{
+        display: none;
+    }
+
+    .compL{
+        display: none;
+    }
+
+    .user-table{
+        text-align: center;
+
+        th{
+            text-align: center;
+        }
+    }
+}

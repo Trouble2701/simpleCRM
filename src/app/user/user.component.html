@@ -3,17 +3,17 @@
     <mat-card-content>
       <table class="user-table">
         <tr>
-          <th>Company</th>
+          <th class="compH">Company</th>
           <th>Name</th>
-          <th>E-Mail</th>
-          <th>City</th>
+          <th class="mailH">E-Mail</th>
+          <th class="cityH">City</th>
         </tr>
         @for (userData of users; track userData; let i = $index) {
         <tr (click)="openUser(i)">
-          <td>{{userData.company}}</td>
+          <td class="compL">{{userData.company}}</td>
           <td>{{userData.firstName}} {{userData.lastName}}</td>
-          <td>{{userData.email}}</td>
-          <td>{{userData.city}}</td>
+          <td class="mailL">{{userData.email}}</td>
+          <td class="cityL">{{userData.city}}</td>
         </tr>
         }
       </table>
